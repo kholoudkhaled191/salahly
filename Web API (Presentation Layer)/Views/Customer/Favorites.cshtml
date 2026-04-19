@@ -1,0 +1,63 @@
+@* Favorites List – Arabic (RTL) *@
+@* Bundle: Customer & Booking + Worker | Layout assumes _Layout loads TailwindCSS + main-theme.css *@
+
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden" dir="rtl">
+    <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-10 py-3">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-4 text-primary"><span class="material-symbols-outlined text-3xl font-bold">handyman</span><h2 class="text-xl font-bold leading-tight tracking-tight">Salahly</h2></div>
+                <div class="hidden md:flex items-center gap-9">
+                    <a class="text-slate-600 text-sm font-medium hover:text-primary" href="#">الرئيسية</a>
+                    <a class="text-primary text-sm font-bold border-b-2 border-primary" href="#">المفضلة</a>
+                    <a class="text-slate-600 text-sm font-medium hover:text-primary" href="#">الطلبات</a>
+                </div>
+            </div>
+            <div class="flex flex-1 justify-end gap-6 items-center">
+                <button class="text-slate-500"><span class="material-symbols-outlined">notifications</span></button>
+                <div class="size-10 rounded-full border-2 border-primary/20 bg-cover bg-center" style="background-image: url('@Model.profilePicture')"></div>
+            </div>
+        </header>
+        <div class="flex flex-1">
+            <aside class="hidden md:flex w-64 flex-col border-l border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4">
+                <div class="flex gap-3 items-center px-2 mb-6">
+                    <div class="size-10 rounded-full bg-cover bg-center" style="background-image: url('@Model.profilePicture')"></div>
+                    <div><h1 class="text-sm font-bold">@Model.fullName</h1><p class="text-slate-500 text-xs">حساب العميل</p></div>
+                </div>
+                <nav class="flex flex-col gap-1">
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors" href="#"><span class="material-symbols-outlined">grid_view</span><p class="text-sm font-semibold">لوحة التحكم</p></a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary" href="#"><span class="material-symbols-outlined">favorite</span><p class="text-sm font-bold">المفضلة</p></a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors" href="#"><span class="material-symbols-outlined">chat_bubble</span><p class="text-sm font-semibold">الرسائل</p></a>
+                </nav>
+            </aside>
+            <main class="flex-1 flex flex-col p-6 lg:p-10 max-w-6xl mx-auto w-full">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+                    <div><h2 class="text-3xl font-black tracking-tight">مفضلتي</h2><p class="text-slate-500 mt-1">إدارة وحجز المتخصصين المفضلين لديك.</p></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                    @foreach (var worker in Model.FavoriteWorkers)
+                    {
+                    <div class="group relative flex flex-col rounded-xl bg-white dark:bg-slate-900 shadow-sm hover:shadow-md border border-slate-200 dark:border-slate-800 overflow-hidden transition-all duration-300">
+                        <button class="absolute top-4 right-4 z-10 size-9 flex items-center justify-center rounded-full bg-white/90 text-primary shadow-sm"><span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1">favorite</span></button>
+                        <div class="aspect-video w-full bg-center bg-cover" style="background-image: url('@worker.portfolioImage')"></div>
+                        <div class="p-5 flex flex-col gap-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-lg font-bold">@worker.fullName</h3>
+                                    <div class="flex items-center gap-1 mt-1 text-slate-500"><span class="material-symbols-outlined text-sm text-yellow-500" style="font-variation-settings: 'FILL' 1">star</span><span class="text-sm font-bold">@worker.averageRating</span></div>
+                                </div>
+                                <div class="size-12 rounded-full border-2 border-white shadow-sm bg-cover bg-center" style="background-image: url('@worker.profilePicture')"></div>
+                            </div>
+                            <div class="flex items-center gap-2 text-slate-500 text-sm"><span class="material-symbols-outlined text-base">location_on</span><span>@worker.address</span></div>
+                            <div class="flex gap-2 pt-2">
+                                <button class="flex-1 bg-primary text-white py-2.5 rounded-lg text-sm font-bold hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"><span class="material-symbols-outlined text-lg">event_available</span> احجز الآن</button>
+                                <button class="px-4 py-2.5 rounded-lg bg-slate-100 text-sm font-bold hover:bg-slate-200 transition-colors">الملف الشخصي</button>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+

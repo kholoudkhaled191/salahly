@@ -1,13 +1,61 @@
-﻿<!DOCTYPE html>
-
-<html>
+<!DOCTYPE html>
+<html lang="@ViewBag.Lang" dir="@ViewBag.Dir" class="@ViewBag.Theme">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - صلاحلي | Salahly</title>
+    <meta name="description" content="@ViewBag.MetaDescription" />
+
+    <!-- Tailwind CSS CDN + Plugins -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f2cbd",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101322",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "Noto Sans Arabic", "sans-serif"],
+                        "arabic": ["Noto Sans Arabic", "sans-serif"],
+                        "english": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <!-- Centralized Design System -->
+    <link rel="stylesheet" href="~/css/main-theme.css" />
+
+    <!-- Per-page styles (optional) -->
+    @RenderSection("Styles", required: false)
 </head>
-<body>
-    <div>
-        @RenderBody()
-    </div>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen antialiased">
+
+    @RenderBody()
+
+    <!-- Per-page scripts (optional) -->
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
