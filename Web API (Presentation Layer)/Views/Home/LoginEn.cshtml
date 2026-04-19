@@ -1,0 +1,50 @@
+@* Secure Login – English (LTR) *@
+@* Bundle: Public | Layout assumes _Layout loads TailwindCSS + main-theme.css *@
+
+<div class="relative flex min-h-screen w-full flex-col" dir="ltr">
+    <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 md:px-20 py-4">
+            <div class="flex items-center gap-4">
+                <div class="size-8 bg-primary text-white flex items-center justify-center rounded-lg"><span class="material-symbols-outlined">build</span></div>
+                <h2 class="text-xl font-bold tracking-tight">Salahly</h2>
+            </div>
+            <div class="flex items-center gap-3">
+                <p class="hidden md:block text-slate-500 text-sm">Don't have an account?</p>
+                <a class="px-5 py-2.5 bg-primary/10 text-primary rounded-lg font-bold text-sm hover:bg-primary/20 transition-colors" href="#">Sign Up</a>
+            </div>
+        </header>
+        <main class="flex-1 flex items-center justify-center py-12 px-4">
+            <div class="w-full max-w-[480px] bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800 p-8 md:p-12">
+                <div class="text-center mb-10">
+                    <div class="mx-auto mb-6 size-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary"><span class="material-symbols-outlined text-3xl">lock</span></div>
+                    <h1 class="text-3xl font-black tracking-tight mb-2">Sign In</h1>
+                    <p class="text-slate-500">Access your Salahly account</p>
+                </div>
+                <form class="space-y-5">
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Email or Phone Number</label>
+                        <div class="relative">
+                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">mail</span>
+                            <input class="w-full rounded-xl border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 pl-10 focus:border-primary focus:ring-primary h-12" placeholder="name@example.com" type="text" />
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Password</label>
+                        <div class="relative">
+                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">lock</span>
+                            <input class="w-full rounded-xl border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 pl-10 focus:border-primary focus:ring-primary h-12" placeholder="••••••••" type="password" />
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <label class="flex items-center gap-2 cursor-pointer"><input class="rounded text-primary focus:ring-primary h-4 w-4" type="checkbox" /><span class="text-sm text-slate-500">Remember me</span></label>
+                        <a class="text-sm text-primary font-medium hover:underline" href="#">Forgot password?</a>
+                    </div>
+                    <button class="w-full bg-primary text-white h-14 rounded-xl font-bold text-lg hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all" type="submit">Sign In</button>
+                </form>
+                <div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 text-center text-sm text-slate-500">
+                    <p>Don't have an account? <a class="text-primary font-bold hover:underline" href="#">Create Account</a></p>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

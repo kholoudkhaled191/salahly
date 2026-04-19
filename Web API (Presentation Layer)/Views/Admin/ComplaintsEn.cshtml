@@ -1,0 +1,102 @@
+@* Complaint Center – English (LTR) *@
+@* Bundle: Admin & Governance | Layout assumes _Layout loads TailwindCSS + main-theme.css *@
+
+<div class="relative flex min-h-screen w-full flex-col" dir="ltr">
+    <header class="flex items-center justify-between whitespace-nowrap border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 py-3 lg:px-40">
+        <div class="flex items-center gap-4">
+            <div class="text-primary"><span class="material-symbols-outlined text-3xl">handyman</span></div>
+            <h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight">Salahly</h2>
+        </div>
+        <div class="flex flex-1 justify-end gap-4 lg:gap-8 items-center">
+            <button class="flex cursor-pointer items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                <span class="material-symbols-outlined">notifications</span>
+            </button>
+            <div class="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">@Model.userId.Substring(0,2)</div>
+        </div>
+    </header>
+
+    <main class="flex flex-col lg:flex-row flex-1 px-4 lg:px-40 py-8 gap-8">
+        <aside class="w-full lg:w-64 flex flex-col gap-6">
+            <div class="flex flex-col gap-1">
+                <h1 class="text-slate-900 dark:text-white text-lg font-bold">Complaint Center</h1>
+                <p class="text-slate-500 text-sm">Manage and track service issues</p>
+            </div>
+            <nav class="flex flex-col gap-2">
+                <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary font-medium" href="#"><span class="material-symbols-outlined">dashboard</span><span>Dashboard</span></a>
+                <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#"><span class="material-symbols-outlined">add_circle</span><span>Submit a Complaint</span></a>
+                <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#"><span class="material-symbols-outlined">history</span><span>My Reports</span></a>
+            </nav>
+        </aside>
+
+        <div class="flex-1 flex flex-col gap-8">
+            <section class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+                <div class="flex items-center gap-2 mb-6">
+                    <span class="material-symbols-outlined text-primary">edit_document</span>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white">Submit a New Complaint</h2>
+                </div>
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Service Order ID</label>
+                        <input class="rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary w-full p-3" placeholder="e.g. #SR-98231" type="text" />
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Subject</label>
+                        <input class="rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary w-full p-3" placeholder="Brief summary of the issue" type="text" />
+                    </div>
+                    <div class="flex flex-col gap-2 md:col-span-2">
+                        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Description</label>
+                        <textarea class="rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-800 focus:border-primary focus:ring-primary w-full p-3" placeholder="Describe the problem in detail..." rows="4"></textarea>
+                    </div>
+                    <div class="md:col-span-2 flex justify-end gap-3 mt-2">
+                        <button class="px-6 py-2.5 rounded-lg font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" type="button">Cancel</button>
+                        <button class="px-8 py-2.5 rounded-lg font-semibold bg-primary text-white hover:bg-primary/90 transition-colors shadow-md" type="submit">Submit Complaint</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+                <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900 dark:text-white">Recent Complaints</h2>
+                        <p class="text-slate-500 text-sm">Admin Management View</p>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 dark:bg-slate-800/50">
+                                <th class="p-4 text-xs font-bold uppercase tracking-wider text-slate-500">ID</th>
+                                <th class="p-4 text-xs font-bold uppercase tracking-wider text-slate-500">Customer</th>
+                                <th class="p-4 text-xs font-bold uppercase tracking-wider text-slate-500">Subject</th>
+                                <th class="p-4 text-xs font-bold uppercase tracking-wider text-slate-500">Status</th>
+                                <th class="p-4 text-xs font-bold uppercase tracking-wider text-slate-500 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                            @foreach (var complaint in Model.Complaints)
+                            {
+                            <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                <td class="p-4 font-medium text-slate-900 dark:text-white">@complaint.complaintId</td>
+                                <td class="p-4"><span class="text-sm font-medium">@complaint.fullName</span></td>
+                                <td class="p-4 text-sm text-slate-600 dark:text-slate-400 max-w-[200px] truncate">@complaint.description</td>
+                                <td class="p-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold">@complaint.status</span></td>
+                                <td class="p-4 text-right">
+                                    <div class="flex justify-end gap-2">
+                                        <button class="px-3 py-1.5 text-xs font-bold rounded bg-primary text-white hover:bg-primary/90">Reply</button>
+                                        <button class="px-3 py-1.5 text-xs font-bold rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Act</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="px-4 lg:px-40 py-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 mt-auto">
+        <p class="text-slate-500 text-sm">© 2024 Salahly Services. All rights reserved.</p>
+    </footer>
+</div>
+
